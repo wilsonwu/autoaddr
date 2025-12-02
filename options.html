@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Azure OpenAI Settings</title>
+  <style>
+    body { padding: 10px; font-family: sans-serif; }
+    div { margin-bottom: 10px; }
+    label { display: inline-block; width: 100px; }
+    input { width: 300px; }
+  </style>
+</head>
+<body>
+  <h1>Azure OpenAI Configuration</h1>
+  <div>
+    <label for="endpoint">Endpoint:</label>
+    <input type="text" id="endpoint" placeholder="https://your-resource.openai.azure.com/">
+  </div>
+  <div>
+    <label for="apiKey">API Key:</label>
+    <input type="password" id="apiKey">
+  </div>
+  <div>
+    <label for="deployment">Deployment:</label>
+    <input type="text" id="deployment" placeholder="deployment-name">
+  </div>
+  <button id="save">Save</button>
+  <div id="status"></div>
+  <script src="options.js"></script>
+</body>
+</html>

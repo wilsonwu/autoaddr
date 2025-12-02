@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "Auto Address",
+  "version": "1.0",
+  "description": "Extension with Azure OpenAI settings",
+  "permissions": ["storage"],
+  "action": {
+    "default_popup": "hello.html"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": false
+  }
+}
