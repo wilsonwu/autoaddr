@@ -3,9 +3,15 @@
   "name": "Auto Address",
   "version": "1.0",
   "description": "Extension with Azure OpenAI settings",
-  "permissions": ["storage"],
+  "permissions": ["storage", "sidePanel"],
   "action": {
-    "default_popup": "hello.html"
+    "default_title": "Open Auto Address"
+  },
+  "side_panel": {
+    "default_path": "hello.html"
+  },
+  "background": {
+    "service_worker": "background.js"
   },
   "options_ui": {
     "page": "options.html",

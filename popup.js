@@ -58,13 +58,33 @@ document.getElementById('splitBtn').addEventListener('click', () => {
       try {
         const addr = JSON.parse(content);
         outputDiv.innerHTML = `
-          <div><b>姓名:</b> ${addr.name || ''}</div>
-          <div><b>省/州:</b> ${addr.province || ''}</div>
-          <div><b>城市:</b> ${addr.city || ''}</div>
-          <div><b>门牌号:</b> ${addr.house_number || ''}</div>
-          <div><b>地址:</b> ${addr.address || ''}</div>
-          <div><b>邮编:</b> ${addr.zip_code || ''}</div>
+          <div class="result-item" data-value="${addr.name || ''}"><b>姓名:</b> <span class="value">${addr.name || ''}</span></div>
+          <div class="result-item" data-value="${addr.province || ''}"><b>省/州:</b> <span class="value">${addr.province || ''}</span></div>
+          <div class="result-item" data-value="${addr.city || ''}"><b>城市:</b> <span class="value">${addr.city || ''}</span></div>
+          <div class="result-item" data-value="${addr.house_number || ''}"><b>门牌号:</b> <span class="value">${addr.house_number || ''}</span></div>
+          <div class="result-item" data-value="${addr.address || ''}"><b>地址:</b> <span class="value">${addr.address || ''}</span></div>
+          <div class="result-item" data-value="${addr.zip_code || ''}"><b>邮编:</b> <span class="value">${addr.zip_code || ''}</span></div>
+          <div class="copy-hint">点击条目即可复制</div>
         `;
+
+        // Add click event listeners for copying
+        const items = outputDiv.querySelectorAll('.result-item');
+        items.forEach(item => {
+          item.addEventListener('click', () => {
+            const text = item.getAttribute('data-value');
+            if (text) {
+              navigator.clipboard.writeText(text).then(() => {
+                // Visual feedback
+                const originalBg = item.style.backgroundColor;
+                item.style.backgroundColor = '#d0ebff';
+                setTimeout(() => {
+                  item.style.backgroundColor = originalBg;
+                }, 200);
+              });
+            }
+          });
+        });
+
       } catch (e) {
         outputDiv.textContent = 'Could not parse JSON: ' + content;
       }
