@@ -43,7 +43,7 @@ document.getElementById('splitBtn').addEventListener('click', () => {
           messages: [
             {
               role: "system", 
-              content: "You are an address parser. Return ONLY a raw JSON object (no markdown code blocks) with keys: name, province, city, house_number, address, zip_code."
+              content: "You are an address parser. Return ONLY a raw JSON object (no markdown code blocks) with keys: name, province, city, house_number, address, zip_code, country. If province/state is missing in the input, infer it from the city."
             },
             {
               role: "user", 
@@ -63,6 +63,48 @@ document.getElementById('splitBtn').addEventListener('click', () => {
       
       try {
         const addr = JSON.parse(content);
+
+        // If province is missing but city exists, try to complete it
+        if ((!addr.province || addr.province === 'null' || addr.province === '') && addr.city) {
+          outputDiv.textContent = i18n.getText('msgCompleting');
+          try {
+            const countryContext = addr.country ? ` in ${addr.country}` : '';
+            const compResponse = await fetch(url, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'api-key': azureApiKey
+              },
+              body: JSON.stringify({
+                messages: [
+                  {
+                    role: "system", 
+                    content: "You are a geography helper. Return ONLY the province/state name for the given city. Do not return JSON, just the name."
+                  },
+                  {
+                    role: "user", 
+                    content: `Which province/state is the city "${addr.city}"${countryContext}?`
+                  }
+                ],
+                temperature: 0.1
+              })
+            });
+
+            if (compResponse.ok) {
+              const compData = await compResponse.json();
+              let inferredProvince = compData.choices[0].message.content.trim();
+              // Remove trailing period if present
+              if (inferredProvince.endsWith('.')) {
+                inferredProvince = inferredProvince.slice(0, -1);
+              }
+              addr.province = inferredProvince;
+            }
+          } catch (compError) {
+            console.error("Failed to infer province:", compError);
+            // Continue with original data if inference fails
+          }
+        }
+
         outputDiv.innerHTML = `
           <div class="result-item" data-value="${addr.name || ''}"><b>${i18n.getText('fieldName')}:</b> <span class="value">${addr.name || ''}</span></div>
           <div class="result-item" data-value="${addr.province || ''}"><b>${i18n.getText('fieldProvince')}:</b> <span class="value">${addr.province || ''}</span></div>
