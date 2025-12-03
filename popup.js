@@ -25,7 +25,7 @@ document.getElementById('splitBtn').addEventListener('click', () => {
     try {
       // Ensure endpoint ends with slash
       let baseUrl = azureEndpoint.endsWith('/') ? azureEndpoint : azureEndpoint + '/';
-      const url = `${baseUrl}openai/deployments/${azureDeployment}/chat/completions?api-version=2024-02-15-preview`;
+      const url = `${baseUrl}openai/deployments/${azureDeployment}/chat/completions?api-version=2024-05-01-preview`;
 
       const response = await fetch(url, {
         method: 'POST',
@@ -37,7 +37,7 @@ document.getElementById('splitBtn').addEventListener('click', () => {
           messages: [
             {
               role: "system", 
-              content: "You are an address parser. Return ONLY a raw JSON object (no markdown code blocks) with keys: street, city, state, zip, country."
+              content: "You are an address parser. Return ONLY a raw JSON object (no markdown code blocks) with keys: name, province, city, house_number, address, zip_code."
             },
             {
               role: "user", 
@@ -58,11 +58,12 @@ document.getElementById('splitBtn').addEventListener('click', () => {
       try {
         const addr = JSON.parse(content);
         outputDiv.innerHTML = `
-          <div><b>Street:</b> ${addr.street || ''}</div>
-          <div><b>City:</b> ${addr.city || ''}</div>
-          <div><b>State:</b> ${addr.state || ''}</div>
-          <div><b>Zip:</b> ${addr.zip || ''}</div>
-          <div><b>Country:</b> ${addr.country || ''}</div>
+          <div><b>姓名:</b> ${addr.name || ''}</div>
+          <div><b>省/州:</b> ${addr.province || ''}</div>
+          <div><b>城市:</b> ${addr.city || ''}</div>
+          <div><b>门牌号:</b> ${addr.house_number || ''}</div>
+          <div><b>地址:</b> ${addr.address || ''}</div>
+          <div><b>邮编:</b> ${addr.zip_code || ''}</div>
         `;
       } catch (e) {
         outputDiv.textContent = 'Could not parse JSON: ' + content;
