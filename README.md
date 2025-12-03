@@ -5,6 +5,8 @@ Auto Address 是一款基于 Azure OpenAI 的 Chrome 浏览器扩展，专为电
 ## ✨ 功能特性
 
 - **🤖 智能解析**：利用强大的 GPT 模型，精准识别姓名、省/州、城市、门牌号、详细地址和邮编。
+- **🧩 智能补全**：如果地址中缺失省/州信息，插件会自动根据城市和国家信息进行推断补全，确保信息完整。
+- **🌍 多语言支持**：支持中文和英文界面，自动检测浏览器语言，也可在设置中手动切换。
 - **🖥️ 侧边栏模式**：采用 Chrome Side Panel 设计，在浏览网页（如快递填单页面）时常驻侧边，互不干扰。
 - **📋 一键复制**：解析后的每个字段支持点击即复制，省去手动选中的麻烦。
 - **🔒 隐私安全**：直接连接您自己的 Azure OpenAI 服务，数据不经过任何第三方中转服务器。
@@ -23,10 +25,11 @@ Auto Address 是一款基于 Azure OpenAI 的 Chrome 浏览器扩展，专为电
 
 在使用前，您需要配置 Azure OpenAI 服务：
 
-1. 点击插件图标打开侧边栏。
-2. 如果未配置，界面会提示您进入 **Options (设置)** 页面（或右键点击插件图标选择“选项”）。
 3. 填写以下信息：
+   - **Language**: 选择界面语言 (中文 / English)
    - **Endpoint**: 您的 Azure OpenAI 资源端点 (例如: `https://your-resource.openai.azure.com/`)
+   - **API Key**: 您的 Azure OpenAI 密钥
+   - **Deployment**: 您部署的模型名称 (建议使用 gpt-3.5-turbo 或 gpt-4)-resource.openai.azure.com/`)
    - **API Key**: 您的 Azure OpenAI 密钥
    - **Deployment**: 您部署的模型名称 (建议使用 gpt-3.5-turbo 或 gpt-4)
 4. 点击 **保存配置**。

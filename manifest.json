@@ -3,9 +3,15 @@
   "name": "Auto Address",
   "version": "1.0",
   "description": "Extension with Azure OpenAI settings",
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
   "permissions": ["storage", "sidePanel"],
   "action": {
-    "default_title": "Open Auto Address"
+    "default_title": "Open Auto Address",
+    "default_icon": "icon.png"
   },
   "side_panel": {
     "default_path": "hello.html"
