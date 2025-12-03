@@ -115,11 +115,12 @@
     </style>
   </head>
   <body>
-    <h1>📦 快递运单助手</h1>
-    <textarea id="addressInput" rows="4" placeholder="请粘贴包含姓名、电话、地址的文本...
+    <h1 data-i18n="appTitle">📦 快递运单助手</h1>
+    <textarea id="addressInput" rows="4" data-i18n="inputPlaceholder" placeholder="请粘贴包含姓名、电话、地址的文本...
 例如：张三 13800138000 广东省深圳市南山区科技园..."></textarea>
-    <button id="splitBtn">智能解析地址</button>
+    <button id="splitBtn" data-i18n="btnParse">智能解析地址</button>
     <div id="output"></div>
+    <script src="i18n.js"></script>
     <script src="popup.js"></script>
   </body>
 </html>

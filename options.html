@@ -83,22 +83,30 @@
 </head>
 <body>
   <div class="container">
-    <h1>⚙️ Azure OpenAI 设置</h1>
+    <h1 data-i18n="settingsTitle">⚙️ Azure OpenAI 设置</h1>
     <div class="form-group">
-      <label for="endpoint">Endpoint (端点):</label>
+      <label for="language" data-i18n="lblLanguage">语言 (Language):</label>
+      <select id="language" style="width: 100%; padding: 10px 12px; border: 1px solid #dee2e6; border-radius: 6px; font-size: 14px;">
+        <option value="zh-CN">中文 (简体)</option>
+        <option value="en">English</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="endpoint" data-i18n="lblEndpoint">Endpoint (端点):</label>
       <input type="text" id="endpoint" placeholder="https://your-resource.openai.azure.com/">
     </div>
     <div class="form-group">
-      <label for="apiKey">API Key (密钥):</label>
+      <label for="apiKey" data-i18n="lblApiKey">API Key (密钥):</label>
       <input type="password" id="apiKey" placeholder="输入你的 API Key">
     </div>
     <div class="form-group">
-      <label for="deployment">Deployment (部署名称):</label>
+      <label for="deployment" data-i18n="lblDeployment">Deployment (部署名称):</label>
       <input type="text" id="deployment" placeholder="例如: gpt-4o">
     </div>
-    <button id="save">保存配置</button>
+    <button id="save" data-i18n="btnSave">保存配置</button>
     <div id="status"></div>
   </div>
+  <script src="i18n.js"></script>
   <script src="options.js"></script>
 </body>
 </html>

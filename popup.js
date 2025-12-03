@@ -2,22 +2,28 @@ console.log('This is a popup!');
 const textarea = document.getElementById('addressInput');
 console.log('Textarea found:', textarea);
 
+// Initialize i18n
+document.addEventListener('DOMContentLoaded', async () => {
+  await i18n.init();
+  i18n.apply();
+});
+
 document.getElementById('splitBtn').addEventListener('click', () => {
   const address = textarea.value;
   const outputDiv = document.getElementById('output');
   
   if (!address) {
-    outputDiv.textContent = 'Please enter an address.';
+    outputDiv.textContent = i18n.getText('msgEnterAddress');
     return;
   }
 
-  outputDiv.textContent = 'Processing...';
+  outputDiv.textContent = i18n.getText('msgProcessing');
 
   chrome.storage.sync.get(['azureEndpoint', 'azureApiKey', 'azureDeployment'], async (items) => {
     const { azureEndpoint, azureApiKey, azureDeployment } = items;
 
     if (!azureEndpoint || !azureApiKey || !azureDeployment) {
-      outputDiv.innerHTML = 'Please configure Azure OpenAI settings in <a href="#" id="openOptions">Options</a>.';
+      outputDiv.innerHTML = i18n.getText('msgConfigError');
       document.getElementById('openOptions').addEventListener('click', () => chrome.runtime.openOptionsPage());
       return;
     }
@@ -58,13 +64,13 @@ document.getElementById('splitBtn').addEventListener('click', () => {
       try {
         const addr = JSON.parse(content);
         outputDiv.innerHTML = `
-          <div class="result-item" data-value="${addr.name || ''}"><b>姓名:</b> <span class="value">${addr.name || ''}</span></div>
-          <div class="result-item" data-value="${addr.province || ''}"><b>省/州:</b> <span class="value">${addr.province || ''}</span></div>
-          <div class="result-item" data-value="${addr.city || ''}"><b>城市:</b> <span class="value">${addr.city || ''}</span></div>
-          <div class="result-item" data-value="${addr.house_number || ''}"><b>门牌号:</b> <span class="value">${addr.house_number || ''}</span></div>
-          <div class="result-item" data-value="${addr.address || ''}"><b>地址:</b> <span class="value">${addr.address || ''}</span></div>
-          <div class="result-item" data-value="${addr.zip_code || ''}"><b>邮编:</b> <span class="value">${addr.zip_code || ''}</span></div>
-          <div class="copy-hint">点击条目即可复制</div>
+          <div class="result-item" data-value="${addr.name || ''}"><b>${i18n.getText('fieldName')}:</b> <span class="value">${addr.name || ''}</span></div>
+          <div class="result-item" data-value="${addr.province || ''}"><b>${i18n.getText('fieldProvince')}:</b> <span class="value">${addr.province || ''}</span></div>
+          <div class="result-item" data-value="${addr.city || ''}"><b>${i18n.getText('fieldCity')}:</b> <span class="value">${addr.city || ''}</span></div>
+          <div class="result-item" data-value="${addr.house_number || ''}"><b>${i18n.getText('fieldHouse')}:</b> <span class="value">${addr.house_number || ''}</span></div>
+          <div class="result-item" data-value="${addr.address || ''}"><b>${i18n.getText('fieldAddress')}:</b> <span class="value">${addr.address || ''}</span></div>
+          <div class="result-item" data-value="${addr.zip_code || ''}"><b>${i18n.getText('fieldZip')}:</b> <span class="value">${addr.zip_code || ''}</span></div>
+          <div class="copy-hint">${i18n.getText('lblClickToCopy')}</div>
         `;
 
         // Add click event listeners for copying
@@ -86,11 +92,11 @@ document.getElementById('splitBtn').addEventListener('click', () => {
         });
 
       } catch (e) {
-        outputDiv.textContent = 'Could not parse JSON: ' + content;
+        outputDiv.textContent = i18n.getText('msgParseError') + content;
       }
 
     } catch (error) {
-      outputDiv.textContent = 'Error: ' + error.message;
+      outputDiv.textContent = i18n.getText('msgApiError') + error.message;
     }
   });
 });
