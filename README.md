@@ -1,10 +1,44 @@
-# Getting Started With Google Chrome Extensions (Hello World)
+# 📦 Auto Address - 快递运单智能解析助手
 
-This example demonstrates how to create a simple "Hello World" Chrome Extension.
-For more details, visit the [official tutorial](https://developer.chrome.com/docs/extensions/get-started/tutorial/hello-world).
+Auto Address 是一款基于 Azure OpenAI 的 Chrome 浏览器扩展，专为电商卖家、客服和物流人员设计。它能从杂乱的文本中智能提取姓名、电话、地址等信息，并以结构化的方式展示，支持一键复制，极大提高运单填写效率。
 
-## Running This Extension
+## ✨ 功能特性
 
-1. Clone this repository.
-2. Load this directory in Chrome as an [unpacked extension](https://developer.chrome.com/docs/extensions/mv3/getstarted/development-basics/#load-unpacked).
-3. Click the extension icon in the Chrome toolbar, then select the "Hello Extensions" extension. A popup will appear displaying the text "Hello Extensions".
+- **🤖 智能解析**：利用强大的 GPT 模型，精准识别姓名、省/州、城市、门牌号、详细地址和邮编。
+- **🖥️ 侧边栏模式**：采用 Chrome Side Panel 设计，在浏览网页（如快递填单页面）时常驻侧边，互不干扰。
+- **📋 一键复制**：解析后的每个字段支持点击即复制，省去手动选中的麻烦。
+- **🔒 隐私安全**：直接连接您自己的 Azure OpenAI 服务，数据不经过任何第三方中转服务器。
+
+## 🚀 安装指南
+
+由于本插件尚未发布到 Chrome Web Store，您需要通过“加载已解压的扩展程序”方式安装：
+
+1. **下载代码**：下载本仓库的 ZIP 包并解压，或者直接 `git clone` 到本地。
+2. **打开扩展管理**：在 Chrome 浏览器地址栏输入 `chrome://extensions` 并回车。
+3. **开启开发者模式**：点击页面右上角的“开发者模式 (Developer mode)”开关。
+4. **加载插件**：点击左上角的“加载已解压的扩展程序 (Load unpacked)”，选择本项目所在的文件夹。
+5. **固定图标**：在浏览器工具栏点击拼图图标，找到 "Auto Address" 并点击图钉固定，方便使用。
+
+## ⚙️ 配置说明
+
+在使用前，您需要配置 Azure OpenAI 服务：
+
+1. 点击插件图标打开侧边栏。
+2. 如果未配置，界面会提示您进入 **Options (设置)** 页面（或右键点击插件图标选择“选项”）。
+3. 填写以下信息：
+   - **Endpoint**: 您的 Azure OpenAI 资源端点 (例如: `https://your-resource.openai.azure.com/`)
+   - **API Key**: 您的 Azure OpenAI 密钥
+   - **Deployment**: 您部署的模型名称 (建议使用 gpt-3.5-turbo 或 gpt-4)
+4. 点击 **保存配置**。
+
+## 📖 使用方法
+
+1. **打开插件**：点击浏览器右上角的插件图标，侧边栏将自动打开。
+2. **输入文本**：在输入框中粘贴包含收件人信息的文本。
+   > 示例：张三 13800138000 广东省深圳市南山区科技园南区R2-B三楼
+3. **点击解析**：点击“智能解析地址”按钮。
+4. **复制结果**：解析完成后，点击对应的字段（如姓名、地址等），内容会自动复制到剪贴板，然后粘贴到快递系统的对应输入框中即可。
+
+## 🛡️ 隐私政策
+
+本插件不收集任何用户数据。所有的 API 请求均直接从您的浏览器发送至您配置的 Azure OpenAI 端点。详情请参阅 [PRIVACY_POLICY.md](./PRIVACY_POLICY.md)。
