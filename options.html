@@ -4,28 +4,101 @@
   <meta charset="UTF-8">
   <title>Azure OpenAI Settings</title>
   <style>
-    body { padding: 10px; font-family: sans-serif; }
-    div { margin-bottom: 10px; }
-    label { display: inline-block; width: 100px; }
-    input { width: 300px; }
+    body {
+      font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+      padding: 40px;
+      margin: 0;
+      background-color: #f8f9fa;
+      color: #333;
+      display: flex;
+      justify-content: center;
+    }
+    .container {
+      background: white;
+      padding: 32px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      width: 100%;
+      max-width: 800px;
+    }
+    h1 {
+      font-size: 24px;
+      margin: 0 0 24px 0;
+      color: #2c3e50;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 16px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #495057;
+    }
+    input {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #dee2e6;
+      border-radius: 6px;
+      box-sizing: border-box;
+      font-family: inherit;
+      font-size: 14px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    input:focus {
+      outline: none;
+      border-color: #4dabf7;
+      box-shadow: 0 0 0 3px rgba(77, 171, 247, 0.1);
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #228be6;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 600;
+      transition: background-color 0.2s, transform 0.1s;
+      margin-top: 10px;
+    }
+    button:hover {
+      background-color: #1c7ed6;
+    }
+    button:active {
+      transform: translateY(1px);
+    }
+    #status {
+      margin-top: 16px;
+      text-align: center;
+      font-size: 14px;
+      color: #2b8a3e;
+      min-height: 20px;
+    }
   </style>
 </head>
 <body>
-  <h1>Azure OpenAI Configuration</h1>
-  <div>
-    <label for="endpoint">Endpoint:</label>
-    <input type="text" id="endpoint" placeholder="https://your-resource.openai.azure.com/">
+  <div class="container">
+    <h1>⚙️ Azure OpenAI 设置</h1>
+    <div class="form-group">
+      <label for="endpoint">Endpoint (端点):</label>
+      <input type="text" id="endpoint" placeholder="https://your-resource.openai.azure.com/">
+    </div>
+    <div class="form-group">
+      <label for="apiKey">API Key (密钥):</label>
+      <input type="password" id="apiKey" placeholder="输入你的 API Key">
+    </div>
+    <div class="form-group">
+      <label for="deployment">Deployment (部署名称):</label>
+      <input type="text" id="deployment" placeholder="例如: gpt-4o">
+    </div>
+    <button id="save">保存配置</button>
+    <div id="status"></div>
   </div>
-  <div>
-    <label for="apiKey">API Key:</label>
-    <input type="password" id="apiKey">
-  </div>
-  <div>
-    <label for="deployment">Deployment:</label>
-    <input type="text" id="deployment" placeholder="deployment-name">
-  </div>
-  <button id="save">Save</button>
-  <div id="status"></div>
   <script src="options.js"></script>
 </body>
 </html>
