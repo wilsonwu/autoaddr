@@ -25,11 +25,11 @@ Auto Address 是一款基于 Azure OpenAI 的 Chrome 浏览器扩展，专为电
 
 在使用前，您需要配置 Azure OpenAI 服务：
 
+1. 点击插件图标打开侧边栏。
+2. 如果未配置，界面会提示您进入 **Options (设置)** 页面（或右键点击插件图标选择“选项”）。
 3. 填写以下信息：
    - **Language**: 选择界面语言 (中文 / English)
    - **Endpoint**: 您的 Azure OpenAI 资源端点 (例如: `https://your-resource.openai.azure.com/`)
-   - **API Key**: 您的 Azure OpenAI 密钥
-   - **Deployment**: 您部署的模型名称 (建议使用 gpt-3.5-turbo 或 gpt-4)-resource.openai.azure.com/`)
    - **API Key**: 您的 Azure OpenAI 密钥
    - **Deployment**: 您部署的模型名称 (建议使用 gpt-3.5-turbo 或 gpt-4)
 4. 点击 **保存配置**。
@@ -41,6 +41,14 @@ Auto Address 是一款基于 Azure OpenAI 的 Chrome 浏览器扩展，专为电
    > 示例：张三 13800138000 广东省深圳市南山区科技园南区R2-B三楼
 3. **点击解析**：点击“智能解析地址”按钮。
 4. **复制结果**：解析完成后，点击对应的字段（如姓名、地址等），内容会自动复制到剪贴板，然后粘贴到快递系统的对应输入框中即可。
+
+## 📦 打包发布
+
+如果您需要手动打包插件用于发布，可以使用以下命令（Mac/Linux）：
+
+```bash
+zip -r autoaddr_v1.2.zip . -x "*.git*" -x ".venv/*" -x "*.DS_Store*" -x "*.zip" -x "screenshot-*.png" -x "store_screenshot-*.png" -x "generate_icon.html" -x "resize_screenshots.py" -x "__pycache__/*"
+```
 
 ## 🛡️ 隐私政策
 

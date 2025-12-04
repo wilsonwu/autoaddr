@@ -41,7 +41,14 @@ Before use, you need to configure the Azure OpenAI service:
    > Example: John Doe 13800138000 32 Kennedy Avenue, Long Eaton, Derbyshire, UK
 3. **Click Parse**: Click the "Parse Address" button.
 4. **Copy Results**: After parsing is complete, click on the corresponding field (such as name, address, etc.), and the content will be automatically copied to the clipboard, then paste it into the corresponding input box of the courier system.
-5. Package zip -r autoaddr_publish.zip . -x "*.git*" -x ".venv/*" -x "*.DS_Store*" -x "*.zip" -x "screenshot-*.png" -x "store_screenshot-*.png" -x "generate_icon.html"
+
+## 📦 Packaging for Release
+
+If you need to manually package the extension for release, use the following command (Mac/Linux):
+
+```bash
+zip -r autoaddr_v1.2.zip . -x "*.git*" -x ".venv/*" -x "*.DS_Store*" -x "*.zip" -x "screenshot-*.png" -x "store_screenshot-*.png" -x "generate_icon.html" -x "resize_screenshots.py" -x "__pycache__/*"
+```
 
 ## 🛡️ Privacy Policy
 
