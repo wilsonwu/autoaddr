@@ -1,8 +1,9 @@
 {
   "manifest_version": 3,
-  "name": "Auto Address",
+  "name": "__MSG_appName__",
   "version": "1.0",
-  "description": "Extension with Azure OpenAI settings",
+  "default_locale": "en",
+  "description": "__MSG_appDesc__",
   "icons": {
     "16": "icon.png",
     "48": "icon.png",
@@ -10,7 +11,7 @@
   },
   "permissions": ["storage", "sidePanel"],
   "action": {
-    "default_title": "Open Auto Address",
+    "default_title": "__MSG_actionTitle__",
     "default_icon": "icon.png"
   },
   "side_panel": {

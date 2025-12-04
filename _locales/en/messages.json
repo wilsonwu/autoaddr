@@ -1,0 +1,14 @@
+{
+  "appName": {
+    "message": "Auto Address - Smart Shipping Address Parser",
+    "description": "The name of the extension"
+  },
+  "appDesc": {
+    "message": "Intelligently parse shipping addresses using Azure OpenAI. Supports one-click copy for e-commerce and logistics.",
+    "description": "The description of the extension"
+  },
+  "actionTitle": {
+    "message": "Open Auto Address",
+    "description": "Title for the action button"
+  }
+}

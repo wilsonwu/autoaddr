@@ -1,0 +1,14 @@
+{
+  "appName": {
+    "message": "Auto Address - 快递运单智能解析助手",
+    "description": "插件名称"
+  },
+  "appDesc": {
+    "message": "基于 Azure OpenAI 智能解析快递地址。支持一键复制，专为电商和物流设计。",
+    "description": "插件描述"
+  },
+  "actionTitle": {
+    "message": "打开 Auto Address",
+    "description": "操作按钮标题"
+  }
+}
