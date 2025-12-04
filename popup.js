@@ -43,7 +43,7 @@ document.getElementById('splitBtn').addEventListener('click', () => {
           messages: [
             {
               role: "system", 
-              content: "You are an address parser. Return ONLY a raw JSON object (no markdown code blocks) with keys: name, province, city, house_number, address, zip_code, country. If province/state is missing in the input, infer it from the city."
+              content: "You are an address parser. Return ONLY a raw JSON object (no markdown code blocks) with keys: name, province, city, house_number, address, zip_code, country. Rules: 1. 'house_number': prefer apartment/unit/suite number (e.g. A02, #101) over street number. 2. 'address': full street name including street number. 3. If province/state is missing, infer it from the city."
             },
             {
               role: "user", 
