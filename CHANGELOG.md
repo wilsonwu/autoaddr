@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.1] - 2025-12-08
+
+### Changed
+
+- **Address Parsing Logic**: Modified the parsing rule to include the house number directly in the `address` field instead of extracting it separately.
+- **UI Update**: Removed the separate display row for "House Number" in the result view to reflect the parsing logic change.
+
 ## [1.1] - 2025-12-04
 
 ### Added
