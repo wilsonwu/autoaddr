@@ -43,7 +43,7 @@ document.getElementById('splitBtn').addEventListener('click', () => {
           messages: [
             {
               role: "system", 
-              content: "You are an address parser. Return ONLY a raw JSON object (no markdown code blocks) with keys: name, province, city, house_number, address, zip_code, country. Rules: 1. 'house_number': prefer apartment/unit/suite number (e.g. A02, #101) over street number. 2. 'address': full street name including street number. 3. If province/state is missing, infer it from the city."
+              content: "You are an address parser. Return ONLY a raw JSON object (no markdown code blocks) with keys: name, province, city, address, zip_code, country. If province/state is missing in the input, infer it from the city. Do not separate house number, include it in the address field."
             },
             {
               role: "user", 
@@ -109,7 +109,6 @@ document.getElementById('splitBtn').addEventListener('click', () => {
           <div class="result-item" data-value="${addr.name || ''}"><b>${i18n.getText('fieldName')}:</b> <span class="value">${addr.name || ''}</span></div>
           <div class="result-item" data-value="${addr.province || ''}"><b>${i18n.getText('fieldProvince')}:</b> <span class="value">${addr.province || ''}</span></div>
           <div class="result-item" data-value="${addr.city || ''}"><b>${i18n.getText('fieldCity')}:</b> <span class="value">${addr.city || ''}</span></div>
-          <div class="result-item" data-value="${addr.house_number || ''}"><b>${i18n.getText('fieldHouse')}:</b> <span class="value">${addr.house_number || ''}</span></div>
           <div class="result-item" data-value="${addr.address || ''}"><b>${i18n.getText('fieldAddress')}:</b> <span class="value">${addr.address || ''}</span></div>
           <div class="result-item" data-value="${addr.zip_code || ''}"><b>${i18n.getText('fieldZip')}:</b> <span class="value">${addr.zip_code || ''}</span></div>
           <div class="copy-hint">${i18n.getText('lblClickToCopy')}</div>
